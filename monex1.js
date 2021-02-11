@@ -1,0 +1,15 @@
+var MongoClient=require('mongodb').MongoClient;
+var url="mongodb://localhost:27017/newdb";
+MongoClient.connect(url, function(err,db)
+{
+    if(err) throw err;
+    //console.log('database created');
+    //db.close();
+    var dbobj=db.db("newdb");
+    dbobj.createCollection("students",function(err,res)
+    {
+        if (err) throw err;
+        console.log("collection created");
+        db.close();
+    }) 
+});
